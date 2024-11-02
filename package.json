@@ -1,16 +1,35 @@
 {
   "name": "aiblender",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000A\u0000i\u0000B\u0000l\u0000e\u0000n\u0000d\u0000e\u0000r\u0000\r\u0000 \u0000",
+  "description": "AiBlender: Advanced AI tool for text analysis, image recognition, and predictive analytics",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mustapha Barki (akaday)",
   "license": "ISC",
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
