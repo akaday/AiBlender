@@ -68,3 +68,31 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## AI Model Integration and Additional Features
+
+AiBlender now integrates advanced AI models for text analysis and other functionalities. The user interface has been improved with a new header component and additional features.
+
+## Usage Instructions
+
+To use the new features, follow these steps:
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/akaday/AiBlender.git
+   cd AiBlender
+   ```
+
+2. Install the dependencies:
+   ```sh
+   npm install
+   ```
+
+3. Start the development server:
+   ```sh
+   npm start
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
+
+5. Use the "Analyze Text" button to perform text analysis using the integrated AI model.

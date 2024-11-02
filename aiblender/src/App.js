@@ -1,7 +1,16 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { analyzeText } from './models/nlp';
 
 function App() {
+  const [analysisResult, setAnalysisResult] = useState('');
+
+  const handleAnalyzeText = () => {
+    const result = analyzeText('Sample text for analysis');
+    setAnalysisResult(result);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +26,8 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={handleAnalyzeText}>Analyze Text</button>
+        {analysisResult && <p>{analysisResult}</p>}
       </header>
     </div>
   );
