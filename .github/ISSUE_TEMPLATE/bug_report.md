@@ -36,3 +36,11 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+**Instructions for Reporting Bugs**
+Please follow these steps to report a bug:
+1. Ensure the bug is reproducible.
+2. Provide detailed steps to reproduce the bug.
+3. Include any relevant screenshots or logs.
+4. Specify the environment (OS, browser, version) where the bug occurs.
+5. Submit the bug report using this template.
