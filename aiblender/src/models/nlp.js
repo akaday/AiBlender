@@ -33,3 +33,36 @@ export const languageDetection = (text) => {
   const langCode = franc(text);
   return langCode;
 };
+
+// Web worker setup
+export const runInWorker = (workerFunction, data) => {
+  return new Promise((resolve, reject) => {
+    const workerBlob = new Blob([`(${workerFunction.toString()})()`], { type: 'application/javascript' });
+    const worker = new Worker(URL.createObjectURL(workerBlob));
+    worker.postMessage(data);
+    worker.onmessage = (event) => {
+      resolve(event.data);
+      worker.terminate();
+    };
+    worker.onerror = (error) => {
+      reject(error);
+      worker.terminate();
+    };
+  });
+};
+
+export const analyzeTextInWorker = (text) => {
+  return runInWorker(analyzeText, text);
+};
+
+export const namedEntityRecognitionInWorker = (text) => {
+  return runInWorker(namedEntityRecognition, text);
+};
+
+export const textSummarizationInWorker = (text) => {
+  return runInWorker(textSummarization, text);
+};
+
+export const languageDetectionInWorker = (text) => {
+  return runInWorker(languageDetection, text);
+};
