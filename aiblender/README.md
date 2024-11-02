@@ -96,3 +96,5 @@ To use the new features, follow these steps:
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
 5. Use the "Analyze Text" button to perform text analysis using the integrated AI model.
+
+6. Use the "Analyze Sentiment" button to perform sentiment analysis using the integrated sentiment analysis feature.
