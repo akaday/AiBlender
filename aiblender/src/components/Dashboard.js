@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { analyzeText } from '../models/nlp';
 import { analyzeSentiment } from '../models/sentiment';
+
+const LazyLoadedComponent = React.lazy(() => import('../models/nlp'));
 
 function Dashboard() {
   const [data, setData] = useState([]);
@@ -8,6 +10,7 @@ function Dashboard() {
   const [isAccessible, setIsAccessible] = useState(true);
   const [textAnalysisResult, setTextAnalysisResult] = useState('');
   const [sentimentAnalysisResult, setSentimentAnalysisResult] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Fetch data and update state
@@ -27,14 +30,18 @@ function Dashboard() {
     setIsAccessible(!isAccessible);
   };
 
-  const handleTextAnalysis = () => {
-    const result = analyzeText('Sample text for analysis');
+  const handleTextAnalysis = async () => {
+    setIsLoading(true);
+    const result = await analyzeText('Sample text for analysis');
     setTextAnalysisResult(result);
+    setIsLoading(false);
   };
 
-  const handleSentimentAnalysis = () => {
-    const result = analyzeSentiment('Sample text for sentiment analysis');
+  const handleSentimentAnalysis = async () => {
+    setIsLoading(true);
+    const result = await analyzeSentiment('Sample text for sentiment analysis');
     setSentimentAnalysisResult(result);
+    setIsLoading(false);
   };
 
   return (
@@ -54,13 +61,16 @@ function Dashboard() {
       <div className="analysis">
         <h2>Text Analysis</h2>
         <button onClick={handleTextAnalysis}>Analyze Text</button>
-        <p>{textAnalysisResult}</p>
+        {isLoading ? <p>Loading...</p> : <p>{textAnalysisResult}</p>}
       </div>
       <div className="sentiment-analysis">
         <h2>Sentiment Analysis</h2>
         <button onClick={handleSentimentAnalysis}>Analyze Sentiment</button>
-        <p>{sentimentAnalysisResult}</p>
+        {isLoading ? <p>Loading...</p> : <p>{sentimentAnalysisResult}</p>}
       </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <LazyLoadedComponent />
+      </Suspense>
     </div>
   );
 }

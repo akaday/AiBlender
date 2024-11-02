@@ -26,3 +26,36 @@ export const extractTextFromImage = async (image) => {
   const { data: { text } } = await Tesseract.recognize(image, 'eng');
   return text;
 };
+
+// Web worker setup
+export const runInWorker = (workerFunction, data) => {
+  return new Promise((resolve, reject) => {
+    const workerBlob = new Blob([`(${workerFunction.toString()})()`], { type: 'application/javascript' });
+    const worker = new Worker(URL.createObjectURL(workerBlob));
+    worker.postMessage(data);
+    worker.onmessage = (event) => {
+      resolve(event.data);
+      worker.terminate();
+    };
+    worker.onerror = (error) => {
+      reject(error);
+      worker.terminate();
+    };
+  });
+};
+
+export const detectObjectsInWorker = (image) => {
+  return runInWorker(detectObjects, image);
+};
+
+export const classifyImageInWorker = (image) => {
+  return runInWorker(classifyImage, image);
+};
+
+export const segmentImageInWorker = (image) => {
+  return runInWorker(segmentImage, image);
+};
+
+export const extractTextFromImageInWorker = (image) => {
+  return runInWorker(extractTextFromImage, image);
+};
