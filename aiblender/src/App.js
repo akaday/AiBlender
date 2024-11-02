@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { analyzeText } from './models/nlp';
+import Header from './components/Header';
 
 function App() {
   const [analysisResult, setAnalysisResult] = useState('');
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
