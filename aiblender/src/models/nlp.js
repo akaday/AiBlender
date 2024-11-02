@@ -6,8 +6,15 @@ const manager = new NlpManager({ languages: ['en'] });
 const summarizer = new SummarizerManager();
 
 export const analyzeText = (text) => {
-  // Placeholder function to analyze text
-  return `Analyzing: ${text}`;
+  const analysis = {
+    length: text.length,
+    wordCount: text.split(' ').length,
+    charCount: text.replace(/\s/g, '').length,
+    sentenceCount: text.split('.').length - 1,
+    avgWordLength: text.replace(/\s/g, '').length / text.split(' ').length,
+    avgSentenceLength: text.split(' ').length / (text.split('.').length - 1),
+  };
+  return analysis;
 };
 
 export const namedEntityRecognition = async (text) => {
